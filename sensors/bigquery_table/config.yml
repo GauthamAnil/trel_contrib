@@ -1,0 +1,21 @@
+sensor_id: # specify
+sensor.source_code.main:
+  class: github
+  branch: master
+  path: # specify
+sensor.main_executable: _code/ # specify
+checked_out_files_to_use: []
+manager_name: main
+credentials.requested_name: default
+
+dataset_class: # specify table
+instance_ts_precision: D
+label: master
+repository: # specify repository
+
+sleep_duration: 10
+
+bq_project: # specify
+bq_dataset: # specify
+bq_table_prefix: # specify
+max_instance_age_seconds: 864000 # Don't insert tss more than 10 days old ts
