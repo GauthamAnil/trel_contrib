@@ -1,0 +1,21 @@
+sensor_id: local_file_demo
+sensor.source_code.main:
+  class: github
+  branch: master
+  path: git@github.com:GauthamAnil/trel_contrib.git
+sensor.main_executable: _code/sensors/local_file/sensor_local_file.py
+checked_out_files_to_use: []
+manager_name: main
+credentials.requested_name: default
+
+dataset_class: dropped_file
+instance_ts_precision: D
+label: prod
+repository: s3-us-east2
+schema_version: "1"
+
+sleep_duration: 10
+
+folder_to_monitor: # specify local path here
+max_age_in_seconds_to_insert: 86400000 # Don't insert files more than 3 years old
+insert_instance_ts: false # Don't fill instance_ts with the ts of the file
