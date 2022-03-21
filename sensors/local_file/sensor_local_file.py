@@ -8,7 +8,7 @@ This sensor has limited practical value in production, but is good for learning 
 '''
 
 
-import argparse, os, sys
+import argparse, os, sys, datetime
 import treldev
 from os import listdir
 from os.path import isfile, join, isdir
