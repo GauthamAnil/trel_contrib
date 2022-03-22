@@ -1,0 +1,29 @@
+name: append_day
+job_description: "Appends transactions to 30-day data."
+
+execution.profile: bigquery
+
+execution.source_code.main:
+  class: github
+  branch: master
+  path: git@github.com:GauthamAnil/trel_contrib.git
+
+repository_map:
+  - transactions: bq-us
+    transactions_30day: bq-us
+
+scheduler:
+  class: periodic
+  depends_on: [ transactions ]
+  self_depends_on: [ transactions_30day ]
+  labels: [ prod ]
+  instance_ts_precisions: [ D ]
+  cron_constraint: "0 0 * * *"
+  schedule_ts_min: "2021-01-01 00:00:00"
+
+execution.output_generator:
+  class: default
+  outputs:
+  - dataset_class: transactions_30day
+    name: output
+
