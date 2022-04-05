@@ -1,0 +1,19 @@
+sensor_id: # a string identifying this sensor e.g. twitter_amc
+sensor.source_code.main:
+  class: github
+  branch: master
+  path: git@github.com:GauthamAnil/trel_contrib.git
+sensor.main_executable: _code/sensors/finnhub_bq/finnhub_sensor.py
+manager_name: main
+credentials.requested_name: default
+debug: [ '1' ]
+
+dataset_class: # fill
+instance_ts_precision: # fill
+label: # fill
+repository: # fill
+max_instance_age_seconds: 10000 # how far back should this sensor fill
+
+sleep_duration: 60
+cron_constraint: "*/5 * * * *"
+tickers: # Which tickers to download. E.g., ["AMC"]

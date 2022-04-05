@@ -2,6 +2,9 @@
 
 Credentials required: 
 - twitter: A JSON dict containing at least consumer_key, consumer_secret, access_token and access_secret
+
+Packages required:
+- tweepy
 '''
 
 import tweepy, json, yaml, os, unittest, croniter, time, datetime, tempfile, sys
@@ -52,9 +55,8 @@ class Test(unittest.TestCase):
         import logging
         credentials = {}
 
-        with open(os.path.expanduser("~/.twitter.creds.treldemo_stock_dashboard")) as f:
+        with open("credentials.yml") as f:
             credentials['twitter'] = yaml.load(f)
-        print(credentials)
 
         for e,r in crawl('#amc',credentials['twitter'], max_tweets=13, tweets_per_query=3, logger=logging.getLogger()):
             print(r)
