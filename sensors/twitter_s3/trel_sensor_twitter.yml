@@ -1,0 +1,20 @@
+sensor_id: # a string identifying this sensor e.g. twitter_amc
+sensor.source_code.main:
+  class: github
+  branch: master
+  path: git@github.com:GauthamAnil/trel_contrib.git
+sensor.main_executable: _code/sensors/twitter_s3/twitter.py
+manager_name: main
+credentials.requested_name: default
+debug: [ '1' ] # more detailed debug messages
+
+dataset_class:  # fill
+instance_ts_precision: # fill
+label: # fill
+repository: # fill
+max_instance_age_seconds: 10000 # how far back should this sensor fill
+
+sleep_duration: 60
+cron_constraint: "*/5 * * * *"
+hashtag: # What hastag to query. E.g., "#amc" 
+
