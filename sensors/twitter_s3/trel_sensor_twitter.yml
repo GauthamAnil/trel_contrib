@@ -1,7 +1,7 @@
 sensor_id: # a string identifying this sensor e.g. twitter_amc
 sensor.source_code.main:
   class: github
-  branch: master
+  branch: main
   path: git@github.com:GauthamAnil/trel_contrib.git
 sensor.main_executable: _code/sensors/twitter_s3/twitter.py
 manager_name: main
