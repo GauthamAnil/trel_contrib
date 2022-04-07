@@ -4,7 +4,7 @@ Credentials required:
 - twitter: A JSON dict containing at least consumer_key, consumer_secret, access_token and access_secret
 
 Packages required:
-- tweepy
+- tweepy==3.10.0
 '''
 
 import tweepy, json, yaml, os, unittest, croniter, time, datetime, tempfile, sys
