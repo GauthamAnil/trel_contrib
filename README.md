@@ -15,4 +15,4 @@ Here you will find a number of jobs, sensors and their registrations that you ca
 | ------ | ------ | ------------ |
 | append_day | bigquery, demo | A bigquery code part of the Trel demo |
 | report_summary | bigquery, demo | A bigquery code part of the Trel demo |
-
+| lifecycle/s3 (python/pyspark) | lifecycle | This job will perform lifecycle on S3 type repositories |
