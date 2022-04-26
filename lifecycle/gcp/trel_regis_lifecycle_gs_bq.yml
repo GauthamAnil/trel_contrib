@@ -1,0 +1,39 @@
+name: lifecycle.<repository_name>
+
+execution.profile: python # or dataproc_pyspark.
+# for BQ: python recommended with 4 threads
+# for GS: dataproc_pyspark recommended
+
+execution.source_code.main:
+  class: github
+  branch: main
+  path: git@github.com:GauthamAnil/trel_contrib.git
+execution.main_executable: _code/lifecycle/gcp/gs_bq.py
+# execution.additional_arguments: ['--threads=4']
+
+repository_map:
+  # The actions may be stored in a different repository more compatible with the compute technology.
+  # This job requires a Google Storage repository.
+  - lifecycle.actions: <repository_name>
+  
+execution.output_generator:
+  class: default
+  outputs:
+    - dataset_class: lifecycle.actions.complete
+
+# resource.name: emr_spark
+# resource.memory_level: normal
+# resource.num_cores: 1
+# resource.args:
+#   region: <repository region (recommended)>
+#   spot: true
+
+scheduler:
+  class: single_instance
+  instance_prefix: <repository_name>
+  depends_on: [ lifecycle.actions ]
+  labels: [ lifecycle ]
+  instance_ts_precisions: [ H ]
+  cron_constraint: "0 * * * *"
+  schedule_ts_min: "2019-01-01 00:00:00"
+ 
