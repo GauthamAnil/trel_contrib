@@ -4,7 +4,7 @@ Credentials required:
 - twitter: A JSON dict containing at least consumer_key, consumer_secret, access_token and access_secret
 
 Packages required:
-- tweepy
+- tweepy==3.10.0
 '''
 
 import tweepy, json, yaml, os, unittest, croniter, time, datetime, tempfile, sys
@@ -115,7 +115,7 @@ class TwitterSensor(treldev.Sensor):
         if self.debug:
             self.logger.debug(f"ts {ts} ts_next {ts_next}")
         self.write_last_tweet = False
-        if getattr(self, 'crawler',None) is not None and self.last_tweet['created_ts'] >= str(ts):
+        if getattr(self, 'crawler',None) is not None and hasattr(self,'last_tweet') and self.last_tweet['created_ts'] >= str(ts):
             # crawler is good enough
             if self.debug:
                 self.logger.debug(f"reuse crawler as self.last_tweet['created_ts'] = {self.last_tweet['created_ts']} >= ts = {ts}")
