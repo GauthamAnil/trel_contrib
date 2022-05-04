@@ -1,7 +1,7 @@
 name: lifecycle.<repository_name>
 
-execution.profile: python # or dataproc_pyspark.
-# for BQ: python recommended with 4 threads
+execution.profile: python # or dataproc_pyspark
+# for BQ: python recommended with 10 threads
 # for GS: dataproc_pyspark recommended
 
 execution.source_code.main:
@@ -13,7 +13,7 @@ execution.main_executable: _code/lifecycle/gcp/gs_bq.py
 
 repository_map:
   # The actions may be stored in a different repository more compatible with the compute technology.
-  # This job requires a Google Storage repository.
+  # This job requires a Google Storage storage repository for processing either BigQuery or Google Storage lifecycle actions
   - lifecycle.actions: <repository_name>
   
 execution.output_generator:

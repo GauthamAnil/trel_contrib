@@ -1,0 +1,60 @@
+sensor_id: # specify
+
+sensor.source_code.main:
+  class: github
+  branch: main
+  path: https://github.com/GauthamAnil/trel_contrib.git
+sensor.main_executable: _code/sensors/bigquery_table/sensor_bigquery_table.py
+
+manager_name: main
+credentials.requested_name: default
+
+dataset_class: # specify 
+instance_prefix: null # it is recommended you specify a value here, even when null.
+instance_ts_precision: D # change based on frequency of drop
+label: master
+repository: # specify destination repository
+
+# See schema management for details. As for now, this is only used as the attribute
+# for the destination dataset and does not influence the schema of the destination.
+# That is decided by querying the source table only.
+schema_version: null
+
+sleep_duration: 10 # Sleep for this long after each check
+
+# It will generate a dataset for each timestamp in this set, subject to the precision.
+cron_constraint: "0 0 * * *"
+
+# Connection / credentials information
+driver: MariaDB # Pick a suitable on
+server:  # of the the ODBC data source
+port: 
+username: # for accessing the ODBC data source
+password: # for accessing the ODBC data source
+
+# Instead of placing the credentials as shown above, these 5 entries
+# can be stored in a key in credentials management and referenced here
+# This takes precedence over the above section.
+credentials.source_key: # e.g. odbc.<server_name>
+
+database: # Where the table is located
+table: # The table you want to load.
+
+# How many seconds after the previous period is the next period considered ready?
+# E.g., normally, with an hourly cadence, instance 20220101_04 will be ready to load
+# as of 2022-01-01 05:00:00. With this parameter set to 60, it will be ready only
+# as of 2022-01-01 05:00:30
+delay_seconds: 30
+
+# Specify a string here that you want run instead.
+# The string will be formatted using the following variables:
+# 1. table (with value given above)
+# 2. instance_ts (will correspond to what this query result will be registered as)
+# 3. instance_ts_precision (with value given above)
+custom_sql: "select col1, col2 from {table} where col1 >= '{instance_ts}'"
+
+# Don't insert into the catalog, entries with
+# intance_ts older than this many seconds.
+max_instance_age_seconds: 864000 
+
+debug: [ ] # to debug the sensor add strings "writes" and "reads" into this list

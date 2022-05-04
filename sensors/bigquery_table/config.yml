@@ -1,21 +1,32 @@
 sensor_id: # specify
+
 sensor.source_code.main:
   class: github
-  branch: master
-  path: # specify
-sensor.main_executable: _code/ # specify
-checked_out_files_to_use: []
+  branch: main
+  path: https://github.com/GauthamAnil/trel_contrib.git
+sensor.main_executable: _code/sensors/bigquery_table/sensor_bigquery_table.py
+
 manager_name: main
 credentials.requested_name: default
 
-dataset_class: # specify table
-instance_ts_precision: D
+dataset_class: # specify 
+instance_ts_precision: D # change based on frequency of drop
 label: master
-repository: # specify repository
+repository: # specify destination repository
 
-sleep_duration: 10
+# The portion of the table name after the prefix will be parsed
+# using this format into a timestamp
+# instance_ts_format: # default "%Y%m%d" 
+
+sleep_duration: 10 # The sensor sleeps for this long between checks.
 
 bq_project: # specify
 bq_dataset: # specify
 bq_table_prefix: # specify
-max_instance_age_seconds: 864000 # Don't insert tss more than 10 days old ts
+
+# Don't look for or insert the table into the catalog if
+# it's date or time is more than this many seconds.
+max_instance_age_seconds: 864000 
+
+debug: [ ] # to debug the sensor add strings "writes" and "reads" into this list
+

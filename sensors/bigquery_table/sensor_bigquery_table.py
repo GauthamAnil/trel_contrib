@@ -2,9 +2,11 @@
 '''
 This sensor can monitor a given dataset in BigQuery to look for tables with an optional prefix and a date/time component. The time component is used to file the table appropriately.
 
-E.g., table abc_20210201 will be cataloged as <dataset_class>,,20210201,<label>,<repository>
+E.g., table `abc_20210201` will be cataloged as ``<dataset_class>,,20210201,<label>,<repository>``
 
-bq_table_prefix has to contain the full prefix. E.g. abc\_ for abc_20210201. Just abc or ab will not be enough.
+``bq_table_prefix`` has to contain the full prefix. E.g. `abc\_` for `abc_20210201`. Just `abc` or `ab` will not be enough.
+
+Credentials: ``gcp.service_json``
 
 TODO: Add option to query using table metadata and not API. This would scale better.
 
